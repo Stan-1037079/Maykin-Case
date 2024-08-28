@@ -18,8 +18,7 @@ python manage.py import_csv
 ## Installatie-instructies
 
 1. **Clone de repository:**
-   ```bash
-   git clone <repository-url>
+   git clone https://github.com/Stan-1037079/Maykin-Case.git
    cd <repository-directory>
 
 2. **Installatie onafhankelijkheden:**
