@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Zoekpagina</title>
+    {% load static %}
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;  /* Zorgt ervoor dat inhoud vanaf de bovenkant begint */
+            min-height: 100vh;         
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url("{% static 'images/' %}{{ achtergrond_afbeelding }}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;  /* Zorgt ervoor dat de achtergrond op zijn plaats blijft tijdens scrollen */
+        }
+
+        .form-wrapper {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8); /* Zorgt ervoor dat het formulier leesbaar blijft op de achtergrond */
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px;  
+        }
+
+        ul {
+            list-style-type: disc;  
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-wrapper">
+        <form method="get">
+            <select name="stad">
+                {% for stad in steden %}
+                    <option value="{{ stad.naam }}" {% if stad.naam == geselecteerde_stad %}selected{% endif %}>{{ stad.naam }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Zoek hotels</button>
+        </form>
+
+        <ul>
+            {% if hotels %}
+                {% for hotel in hotels %}
+                    <li>{{ hotel.naam }}</li>
+                {% endfor %}
+            {% else %}
+                <li>Geen hotels gevonden.</li>
+            {% endif %}
+        </ul>
+    </div>
+</body>
+</html>

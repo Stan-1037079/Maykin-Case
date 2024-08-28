@@ -1,0 +1,43 @@
+# Hotel Zoek Applicatie
+
+Dit is een Django-gebaseerde webapplicatie waarmee gebruikers hotels kunnen zoeken op basis van een geselecteerde stad. De achtergrondafbeelding van de pagina verandert dynamisch op basis van de geselecteerde stad.
+
+## Functionaliteiten
+- Dynamische zoekfunctionaliteit voor hotels per stad.
+- Veranderende achtergrondafbeelding op basis van de geselecteerde stad.
+- Beheer van data via de Django Admin interface.
+
+## Geen verbinding kunnen maken met de online aangeboden CSV bestanden
+Met de import_city/import_hotel.py geprobeert gegevens op te halen doormiddel van de aangeboden urls. 
+Dit was helaas niet gelukt. 
+Echter het downloaden van de CSV bestanden lukte wel deze bestanden moeten in de case/data worden geplaatst
+Om de data hiervan te importeren naar de sqlite3 database moet de volgende command worden gebruikt in de terminal 
+
+python manage.py import_csv   
+
+## Installatie-instructies
+
+1. **Clone de repository:**
+   ```bash
+   git clone <repository-url>
+   cd <repository-directory>
+
+2. **Installatie onafhankelijkheden:**
+Python3 
+django
+requests
+jinja2
+
+3. **Voer migraties uit:**
+python manage.py migrate
+
+4. **Maak een superuser aan:**
+python manage.py createsuperuser
+
+5. **Start de ontwikkelserver**
+python manage.py runserver
+
+6. **Toegang tot de applicatie:**
+
+Frontend: http://127.0.0.1:8000/
+Admin interface: http://127.0.0.1:8000/admin/
