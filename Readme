@@ -21,7 +21,7 @@ python manage.py import_csv
    git clone https://github.com/Stan-1037079/Maykin-Case.git
    cd <repository-directory>
 
-2. **Installatie onafhankelijkheden:**
+2. **Installatie afhankelijkheden:**
 Python3 
 django
 requests
