@@ -1,7 +1,7 @@
 import csv
 import requests
 
-city_url = 'http://rachel.maykinmedia.nl/djangocase/city.csv'
+city_url = 'http://rebecca.maykinmedia.nl/djangocase/city.csv'
 username = 'python-demo'
 password = 'claw30_bumps'
 

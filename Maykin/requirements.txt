@@ -1,0 +1,4 @@
+Python3 
+django
+requests
+jinja2
