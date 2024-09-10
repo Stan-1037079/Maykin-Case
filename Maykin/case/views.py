@@ -8,22 +8,15 @@ def home(request):
     # Filtert de hotels op basis van de geselecteerde stad.
     steden = Stad.objects.all()
     geselecteerde_stad = request.GET.get('stad')
-    
-    stad_backgrounds = {
-        "Amsterdam": "amsterdam.jpg",
-        "Antwerpen": "antwerpen.jpg",
-        "Athene": "athene.jpg",
-        "Bangkok": "bangkok.jpg",
-        "Barcelona": "barcelona.jpg",
-        "Berlijn": "berlijn.jpg",
-    }
 
     # Standaard achtergrond wanneer er geen stad is geselecteerd
     achtergrond_afbeelding = "hotel.jpg"  
 
     # Als er een stad is geselecteerd in de dropdown bar wordt de bijbehorende achtergrondafbeelding gebruikt
-    if geselecteerde_stad and geselecteerde_stad in stad_backgrounds:
-        achtergrond_afbeelding = stad_backgrounds[geselecteerde_stad]
+    if geselecteerde_stad:
+        stad_obj = Stad.objects.filter(naam=geselecteerde_stad).first()
+        if stad_obj and stad_obj.achtergrond_afbeelding:  # Als er een afbeelding is ingesteld voor de stad
+            achtergrond_afbeelding = stad_obj.achtergrond_afbeelding
 
     # Filtert hotels op basis van de geselecteerde stad
     hotels = Hotel.objects.filter(stad__naam=geselecteerde_stad) if geselecteerde_stad else None

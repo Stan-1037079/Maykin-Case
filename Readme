@@ -37,3 +37,6 @@ python manage.py runserver
 
 Frontend: http://127.0.0.1:8000/
 Admin interface: http://127.0.0.1:8000/admin/
+
+7. **Achtergrond veranderen voor steden**
+Wanneer je in de admin interface bent ingelogd ga dan naar de sectie stad. klik op de stad waar je een afbeelding bij wilt hebben en noteer deze bij "Achtergrond Afbeelding". Voeg in de static/images map de desbetreffende afbeelding toe met de naam die je hem gegeven hebt in de admin interface. 
