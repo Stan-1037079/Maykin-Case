@@ -1,8 +1,11 @@
 import os
 import csv
 import requests
+import logging
 from django.core.management.base import BaseCommand
 from case.models import Stad, Hotel
+
+logger = logging.getLogger('django')
 
 class Command(BaseCommand):
     help = 'Importeer steden en hotels uit CSV-bestanden van externe links'
@@ -28,11 +31,11 @@ class Command(BaseCommand):
                     cr = csv.reader(decoded_content.splitlines(), delimiter=';', quotechar='"')  # Gebruik ; als delimiter en " als quotechar
                     return list(cr)  # Geef de CSV-inhoud terug als lijst van rijen
                 else:
-                    self.stdout.write(self.style.ERROR(f"Failed to download CSV from {url}. Status code: {download.status_code}"))
+                    logger.error(f"Failed to download CSV from {url}. Status code: {download.status_code}")
         except requests.exceptions.Timeout:
-            self.stdout.write(self.style.ERROR(f"The request to {url} timed out."))
+            logger.error(f"The request to {url} timed out.")
         except requests.exceptions.RequestException as e:
-            self.stdout.write(self.style.ERROR(f"An error occurred while fetching {url}: {e}"))
+            logger.error(f"An error occurred while fetching {url}: {e}")
 
         return None
 
@@ -48,7 +51,7 @@ class Command(BaseCommand):
                 
                 # Controleert of de rij minimaal 2 kolommen heeft
                 if len(row) < 2:
-                    self.stdout.write(self.style.WARNING(f"Skipping invalid row (not enough columns): {row}"))
+                    logger.warning(f"Skipping invalid row (not enough columns): {row}")
                     continue
                 
                 stad_code = row[0].strip()  # Stadscode in de eerste kolom
@@ -66,7 +69,7 @@ class Command(BaseCommand):
                 
                 # Controleert of de rij minimaal 3 kolommen heeft
                 if len(row) < 3:
-                    self.stdout.write(self.style.WARNING(f"Skipping invalid row (not enough columns): {row}"))
+                    logger.warning(f"Skipping invalid row (not enough columns): {row}")
                     continue
                 
                 stad_code = row[0].strip()  # Stadscode in de eerste kolom
